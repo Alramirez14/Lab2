@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>City Table</title>
+</head>
+<body>
+
+  <div id="mydiv"></div>
+  <div>  
+    <p></p>Above is the table generated for question 7
+  </div>
+  <script>
+    var cities = ['Corvallis', 'Portland', 'Eugene', 'Albany'];
+    var pops = ['59920', '652500', '176650', '56470'];
+
+    // Start the function and set the arrays as args
+    function makecitytable(arr1, arr2) {
+      var table = document.createElement("table"); // adds table
+
+      // Create and append the header row
+      var headerRow = document.createElement("tr");
+      headerRow.insertAdjacentHTML("beforeend", "<th>City</th><th>Population</th>");
+      table.appendChild(headerRow);
+
+      // Create and append data rows referencing index of array
+      for (var i = 0; i < arr1.length; i++) {
+        var rowHtml = "<tr><td>" + arr1[i] + "</td><td>" + arr2[i] + "</td></tr>";
+        table.insertAdjacentHTML('beforeend', rowHtml);
+      }
+
+      // Append the table to mydiv
+      var mydiv = document.getElementById("mydiv"); 
+      mydiv.appendChild(table);
+
+      return table; // Returning table just in case
+    }
+
+    // Run the function
+    var table = makecitytable(cities, pops);
+  </script>
+
+  <div> 
+    <p>This is my image I generated with p5</p>
+    <img id="p5" src="data\p5_sketch.png"
+           width="700"
+           height="400"></img>
+    <p> Can you guess where it is? Click the image to guess!</p>
+    <p id="answer"> </p>
+
+    <script>
+      var myp5 = document.getElementById("p5");
+      var correctornot = document.getElementById("answer") 
+
+      myp5.addEventListener("click", function() {
+        answer = prompt("In which city is this beautiful University of California campus?")
+        if (answer.toUpperCase() === "SANTA BARBARA") {
+          correctornot.innerHTML = "Correct!"
+        }
+        else {
+          correctornot.innerHTML = "Sorry, try again!"
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>
